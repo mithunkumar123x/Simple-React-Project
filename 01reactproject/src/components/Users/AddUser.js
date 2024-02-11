@@ -44,10 +44,17 @@ const AddUser = (props) => {
       setError(null);
     }; 
 
-    return (
-      <div>
-      { error && <ErrorModal title = {error.title} message = {error.message} onConfirm = {errorHandler} />}
-      <Card className = {classes.input}>
+    return [
+      
+       error && ( 
+      <ErrorModal 
+      key = "error-modal"
+      title = {error.title} 
+      message = {error.message} 
+      onConfirm = {errorHandler} 
+      /> 
+      ) ,
+      <Card key = "add-user-card" className = {classes.input}>
        <form onSubmit={adduserHandler}>
          <label htmlFor='username'>Username</label>
           <input 
@@ -67,9 +74,9 @@ const AddUser = (props) => {
        </form>
     
       </Card>
-      </div>
+      
     
-    );
+    ];
 };
 
 export default AddUser;
