@@ -1,11 +1,9 @@
 import React, {useState} from 'react' ;
-
 import Card from '../UI/Card'
-
 import classes from './AddUser.module.css';
-
 import Button  from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '../Helpers/Wrapper';
 
 
 
@@ -44,17 +42,16 @@ const AddUser = (props) => {
       setError(null);
     }; 
 
-    return [
-      
-       error && ( 
+    return (
+     <Wrapper>
+      { error && ( 
       <ErrorModal 
-      key = "error-modal"
       title = {error.title} 
       message = {error.message} 
       onConfirm = {errorHandler} 
       /> 
-      ) ,
-      <Card key = "add-user-card" className = {classes.input}>
+      )} 
+      <Card className = {classes.input}>
        <form onSubmit={adduserHandler}>
          <label htmlFor='username'>Username</label>
           <input 
@@ -74,9 +71,9 @@ const AddUser = (props) => {
        </form>
     
       </Card>
-      
+      </Wrapper>
     
-    ];
+    );
 };
 
 export default AddUser;
